@@ -1,0 +1,26 @@
+-----------------------
+clk ReadData1 ReadData2
+0 0 0        # addi x4, x0, -20
+C (-20) 0    # addi x5, x4, 0x7FFF
+C 32747 0    # addi x6, x5, 0x7018
+C 61443 0    # addi x7, x6, 0x5311
+C 61443 0    # andi x14, x6, 0xE123
+C 57347 0    # andi x15, x14, 0xFF1C
+C 57344 0    # andi x17, x15, 0x541
+C (-20) 0    # slti x18, x4, 311
+C 1 0        # slti x19, x18, 2
+C 1 0        # slti x20, x19, 0
+C 0 0        # slti x21, x20, -3
+C 0 0        # slti x22, x21, 5
+C 1 0        # addi x0, x22, 0
+C (-20) 0    # slti x23, x4, -20
+C 0 0        # addi x0, x23, 0
+C 65375 0    # slti x24, x11, -90
+C 0 0        # addi x0, x24, 0
+C (-20) 0    # slti x25, x4, 0
+C 1 0        # addi x0, x25, 0
+C 65375 0    # slti x26, x11, 6000
+C 0 0        # addi x0, x26, 0
+C (-20) 0    # slti x27, x4, -1
+C 1 0        # addi x0, x27, 0
+
