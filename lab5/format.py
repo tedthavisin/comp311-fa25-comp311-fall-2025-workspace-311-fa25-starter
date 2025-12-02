@@ -3,13 +3,21 @@ import sys
 
 def convert_to_csv(input_file, output_file):
     with open(input_file, 'r') as infile:
-        lines = [f"0x{line.strip()}" for line in infile if line.strip()]
+        lines = []
+        for line in infile:
+            stripped = line.strip()
+            if not stripped:
+                continue
+            if stripped.lower().startswith("0x"):
+                lines.append(stripped)
+            else:
+                lines.append(f"0x{stripped}")
 
     # Group instructions into chunks of 8
     grouped_instructions = [lines[i:i+8] for i in range(0, len(lines), 8)]
 
     # If the last group has fewer than 8 instructions, pad with "0x0"
-    if len(grouped_instructions) > 0 and len(grouped_instructions[-1]) < 8:
+    if grouped_instructions and len(grouped_instructions[-1]) < 8:
         grouped_instructions[-1] += ['0x0'] * (8 - len(grouped_instructions[-1]))
 
     # Add 5 additional rows of "0x0"
@@ -21,6 +29,7 @@ def convert_to_csv(input_file, output_file):
         writer = csv.writer(csvfile)
         for group in grouped_instructions:
             writer.writerow(group)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
